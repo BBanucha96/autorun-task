@@ -1,0 +1,56 @@
+<nav class="relative flex flex-wrap items-center justify-between px-2 py-3 bg-gray-300 mb-3 z-50">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-between max-w-[1260px] ">
+    <div class="w-full relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start">
+      <a class="leading-relaxed inline-block mr-4 py-2 whitespace-nowrap font-bold"
+         routerLink="/">
+        Autorun task
+      </a>
+      <button class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-gray-500 rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+              type="button"
+              (click)="toggleNavbar()">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             x="0px"
+             y="0px"
+             width="20"
+             height="20"
+             viewBox="0,0,256,256">
+          <g fill="#4c4742"
+             fill-rule="nonzero"
+             stroke="none"
+             stroke-width="1"
+             stroke-linecap="butt"
+             stroke-linejoin="miter"
+             stroke-miterlimit="10"
+             stroke-dasharray=""
+             stroke-dashoffset="0"
+             font-family="none"
+             font-weight="none"
+             font-size="none"
+             text-anchor="none"
+             style="mix-blend-mode: normal">
+            <g transform="scale(5.12,5.12)">
+              <path d="M0,7.5v5h50v-5zM0,22.5v5h50v-5zM0,37.5v5h50v-5z"></path>
+            </g>
+          </g>
+        </svg>
+      </button>
+    </div>
+    <div [ngClass]="{'hidden': !showMenu, 'flex': showMenu}"
+         class="lg:flex lg:flex-grow items-center font-semibold">
+      <ul class="flex flex-col lg:flex-row list-none ml-auto">
+        <li class="nav-item">
+          <a class="px-3 py-2 flex items-center leading-snug hover:opacity-75"
+             routerLink="/grid">
+            <span class="ml-2">Grid</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="px-3 py-2 flex items-center leading-snug hover:opacity-75"
+             routerLink="/table">
+            <span class="ml-2">Table</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

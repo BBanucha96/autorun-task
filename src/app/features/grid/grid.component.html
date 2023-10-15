@@ -1,0 +1,16 @@
+<div *ngIf="products$ | async as products"
+     class="grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 w-11/12 m-auto">
+  <div *ngFor="let product of products"
+       class="w-full bg-white border-gray-200 rounded-lg shadow-lg hover:shadow-2xl p-5 cursor-pointer"
+       (click)="goToDetails(product.id)">
+    <div class="relative flex h-60 overflow-hidden rounded-xl">
+      <img class="object-cover w-full"
+           [src]="product.image"
+           alt="product image" />
+    </div>
+    <div class="pt-3">
+      <h5 class="text-xl tracking-tight pb-1 truncate">{{product.title}}</h5>
+      <span class="text-3xl font-semibold">{{product.price | currency:'USD'}}</span>
+    </div>
+  </div>
+</div>

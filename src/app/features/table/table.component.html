@@ -1,0 +1,54 @@
+<div *ngIf="products$ | async as products"
+     class="relative overflow-x-auto shadow-md sm:rounded-lg w-11/12 m-auto">
+  <div class="py-4 bg-gray-300 flex align-middle justify-center">
+    <span class="text-lg font-semibold">Products</span>
+  </div>
+  <table class="w-full text-sm text-left">
+    <thead class="text-xs uppercase bg-gray-200 border-b">
+      <tr>
+        <th *ngFor="let key of keyOrder;"
+            scope="col"
+            class="px-6 py-3 cursor-pointer"
+            (click)="sortProducts(key)">
+          <div class="flex items-center">
+            <span>{{key}}</span>
+            <svg *ngIf="key !== 'image'"
+                 class="ml-2"
+                 [ngClass]="{'rotate-180' : !isAscending, 'invisible' : key !== sortedColumn }"
+                 xmlns="http://www.w3.org/2000/svg"
+                 width="12"
+                 height="12"
+                 viewBox="0 0 24 24">
+              <path d="M24 22h-24l12-20z" />
+            </svg>
+          </div>
+        </th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products; index as i"
+          class="border-b bg-gray-50 hover:bg-gray-100 cursor-pointer"
+          (dblclick)="openProductModal(product.id)">
+        <ng-container *ngFor="let key of keyOrder">
+          <th *ngIf="key === 'id'"
+              scope="row"
+              class="px-6 py-4 font-medium whitespace-nowrap">
+            {{product.id}}
+          </th>
+          <td *ngIf="key !== 'id'"
+              class="px-6 py-4">
+            <img *ngIf="key === 'image'"
+                 class="w-10 rounded-lg aspect-square"
+                 [src]="product[key]">
+            <span *ngIf="key !== 'image' && key !== 'price'">{{product[key]}}</span>
+            <span *ngIf="key === 'price'">{{product[key] | currency:'USD'}}</span>
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<atr-table-modal class="flex absolute w-100 h-100"
+                 [product$]="productToEdit"></atr-table-modal>
